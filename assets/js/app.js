@@ -1,7 +1,7 @@
 import Player from './Player.js'
 
 const canvas = document.getElementById('game');
-const context = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 200;
@@ -59,8 +59,8 @@ function getScaleRatio() {
 }
 
 function clearScreen() {
-    context.fillStyle = 'white';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function gameLoop(currentTime) {
@@ -76,7 +76,11 @@ function gameLoop(currentTime) {
     console.log(frameTimeDelta);
 
     clearScreen();
-    
+
+    //Update game objects
+    player.draw();
+
+    //Draw game objects
     
     requestAnimationFrame(gameLoop);
 }
