@@ -4,6 +4,9 @@ import Ground from './Ground.js';
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+const GAME_SPEED_START = .75 // 1.0
+const GAME_SPEED_INCREMENT = 0.00001;
+
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 200;
 const PLAYER_WIDTH = 88 / 1.5; //58
@@ -20,6 +23,7 @@ let ground = null;
 
 let scaleRatio = null;
 let previousTime = null;
+let gameSpeed = GAME_SPEED_START;
 
 function createSprites() {
     const playerWidthInGame = PLAYER_WIDTH * scaleRatio;
@@ -99,7 +103,7 @@ function gameLoop(currentTime) {
     clearScreen();
 
     //Update game objects
-    player.draw();
+    ground.update(gameSpeed, frameTimeDelta);
 
     //Draw game objects
     ground.draw();
